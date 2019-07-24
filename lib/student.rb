@@ -62,38 +62,38 @@ class Student
     end.first
   end
 
-  def self.all 
-    sql = <<-SQL 
-      SELECT * 
-      FROM students 
-    SQL 
+  def self.all
+    sql = <<-SQL
+      SELECT *
+      FROM students
+    SQL
 
     DB[:conn].execute(sql).collect do |row|
       self.new_from_db(row)
     end
-  end 
+  end
 
   def self.all_students_in_grade_9
-    sql = <<-SQL 
-      SELECT * 
+    sql = <<-SQL
+      SELECT *
       FROM students
       WHERE grade = 9
-    SQL 
+    SQL
 
     DB[:conn].execute(sql)
-  end 
+  end
 
   def self.students_below_12th_grade
-  end 
+  end
 
   def self.first_X_students_in_grade_10(number)
-  end 
+  end
 
   def self.first_student_in_grade_10
 
   end
 
   def self.all_students_in_grade_X(grade)
-  end 
-  
+  end
+
 end
