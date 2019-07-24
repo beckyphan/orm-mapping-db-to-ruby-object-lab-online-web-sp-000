@@ -103,7 +103,9 @@ class Student
       LIMIT ?
     SQL
 
-    DB[:conn].execute(sql, number)
+    DB[:conn].execute(sql, number).collect do |row|
+      self.new_from_db(row)
+    end
   end
 
   def self.first_student_in_grade_10
@@ -114,7 +116,9 @@ class Student
       LIMIT 1
     SQL
 
-    DB[:conn].execute(sql)
+    DB[:conn].execute(sql).collect do |row|
+      self.new_from_db(row)
+    end
   end
 
   def self.all_students_in_grade_X(grade)
@@ -124,7 +128,9 @@ class Student
       WHERE grade = ?
     SQL
 
-    DB[:conn].execute(sql, grade)
+    DB[:conn].execute(sql, grade).collect do |row|
+      self.new_from_db(row)
+    end
   end
 
 end
